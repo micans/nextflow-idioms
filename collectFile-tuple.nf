@@ -9,8 +9,8 @@
   // - We can control the naming of the metafile.
   // - The application in the process can use this metafile to know its inputs.
   //
-  // This example is more complicated as it features collectFile() on separate
-  // groups emitted fromt the same channel.
+  // This example is more complicated as it features collectFile() into separate groups
+  // by keys.
 
 
 process star {
