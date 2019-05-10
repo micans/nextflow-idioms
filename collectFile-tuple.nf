@@ -10,7 +10,7 @@
   // - The application in the process can use this metafile to know its inputs.
   //
   // This example is more complicated as it features collectFile() into separate groups
-  // by keys.
+  // by keys. 
 
 
 process star {
