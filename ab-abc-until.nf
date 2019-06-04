@@ -4,7 +4,7 @@
 // using `until` instead of Channel.empty().
 // Is this solution equivalent (i.e. in terms of speed)?
 
-params.doB = true
+params.includeB = true
 
 process processA {        // Create a bunch of files, each with its ow sample ID.
   output: file('*.txt') into ch_dummy
@@ -12,16 +12,16 @@ process processA {        // Create a bunch of files, each with its ow sample ID
 }
 ch_dummy.flatMap().map { f -> [f.text.trim(), f] }.view().into { ch_doB; ch_skipB }
 
-ch_skipB.until {  params.doB }.set { ch_AC }
-ch_doB.until   { !params.doB }.set { ch_AB }
+ch_skipB.until {  params.includeB }.set { ch_AC }
+ch_doB.until   { !params.includeB }.set { ch_AB }
 
 process processB {
   input:  set val(sampleid), file(thefile) from ch_AB
-  output: set val(sampleid), file('out.txt') into ch_Bout
+  output: set val(sampleid), file('out.txt') into ch_BC
   script: "(cat $thefile; md5sum $thefile) > out.txt"
 }
 
-ch_Bout.mix(ch_AC).set{ ch_C }
+ch_BC.mix(ch_AC).set{ ch_C }
 
 process processC {
   publishDir "results"
