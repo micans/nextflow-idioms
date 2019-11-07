@@ -40,7 +40,7 @@ process merge {
    publishDir "$baseDir/results", mode: 'copy'
 
    input:
-   file metafile from ch_merge
+   file metafile from ch_merge.view()
 
    output:
    file('*.output')
