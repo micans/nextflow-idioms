@@ -1,7 +1,6 @@
 
-Channel.from('A', 'B', 'C', 'D')
-  .toList().map{ ['dummy', [it, it].combinations().findAll{ a, b -> a < b}] }
-  .transpose()
-  .map { it[1] }
+Channel.from([['A', 10], ['B', 8], ['C', 5], ['D', 4]])
+  .toList().map{ [it, it].combinations().findAll{ a, b -> a[1] < b[1]} }
+  .flatMap()
   .view()
 
