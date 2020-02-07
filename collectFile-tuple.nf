@@ -28,6 +28,7 @@ process moon {
     // This can be observed by running with -dump-channels input
 
 ch_g.mix(ch_f)
+  .view()
   .transpose()
   .dump(tag: 'input')
   .groupTuple()
