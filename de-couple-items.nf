@@ -1,3 +1,4 @@
+
 ch1 = Channel.create()
 ch2 = Channel.create()
 
@@ -21,8 +22,7 @@ process b {
 
 process c {
    echo true
-   input: set val(sampid), val(result) from ch_a.view().mix(ch_b).groupTuple().view()
-   shell: resultstr = result.join(' ')
-	 'echo "sampleID: !{sampid} !{resultstr}"'
+   input: set val(sampid), val(resa), val(resb) from ch_a.join(ch_b)
+   shell: 'echo "!{sampid} !{resa} !{resb}"'
 }
-// Note the elements in result and resultsr may come out in either 'a b' order or 'b a'
+
