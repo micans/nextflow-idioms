@@ -1,8 +1,12 @@
-#!/usr/bin/env nextflow
 
-// This is a variant on http://nextflow-io.github.io/patterns/index.html#_problem_19
-// using `until` instead of Channel.empty().
-// Is this solution equivalent (i.e. in terms of speed)?
+/* Insert process B beween A and C or leave it out, depending on an on/off switch.
+      A -> B -> C 
+      A -> C
+   This is a variant on http://nextflow-io.github.io/patterns/index.html#_problem_19
+   using `until` instead of Channel.empty().
+
+   My prefered solution is ab-abc-when.nf
+*/
 
 params.includeB = true
 

@@ -1,4 +1,10 @@
-#!/usr/bin/env nextflow
+
+/* Insert process B beween A and C or leave it out, depending on an on/off switch.
+      A -> B -> C 
+      A -> C
+   This is roughly the same as http://nextflow-io.github.io/patterns/index.html#_problem_19
+   My prefered solution is ab-abc-when.nf
+ */
 
 params.includeB = true
 

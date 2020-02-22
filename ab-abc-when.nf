@@ -1,5 +1,12 @@
-// This is a variant on http://nextflow-io.github.io/patterns/index.html#_problem_19
-// using `when` and `until` instead of Channel.empty().
+
+/* Insert process B beween A and C or leave it out, depending on an on/off switch.
+      A -> B -> C 
+      A -> C
+   This is a variant on http://nextflow-io.github.io/patterns/index.html#_problem_19
+   using `until` instead of Channel.empty().
+
+   This is my prefered solution.
+*/
 
 params.includeB = true
 
