@@ -6,7 +6,7 @@ Channel.empty()
    .into { ch_foo_b; ch_foo_c; ch_bar_b; ch_bar_c }
 
 // Process foo will run due to the ifEmpty() operators.
-// The collect() will make it parallelise over the values form ch_foo_a
+// The collect() will make it parallelise over the values from ch_foo_a
 
 process foo {
    
@@ -36,7 +36,7 @@ process bar {
 
    shell:
    '''
-   echo "(collect) I have values !{a} and !{b} and !{c}"
+   echo "(won't be seeing this) I have values !{a} and !{b} and !{c}"
    '''
 }
 
