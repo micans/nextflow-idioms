@@ -10,7 +10,7 @@ Channel.empty()
 
 process foo {
    
-   echo true
+   debug true
 
    input:
       val a from ch_foo_a
@@ -27,7 +27,7 @@ process foo {
 
 process bar {
    
-   echo true
+   debug true
 
    input:
       val a from ch_bar_a
