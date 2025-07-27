@@ -1,14 +1,10 @@
-#!/usr/bin/env nextflow
 
+process gen_dirs {
 
-ch_input = Channel.from( 1, 3, 5, 7, 9, 11, 13, 15, 17, 19 )
-
-process gen {
   tag "$sample"
 
-  input:
-  val sample from ch_input
-  output: file('out_my/???') into ch_merge
+  input: val(sample)
+  output: path('out_my/???'), emit: ch_merge
 
   shell:
   '''
@@ -19,14 +15,12 @@ process gen {
 }
 
 
-process merge {
-   publishDir "$baseDir/results", mode: 'copy'
+process merge_stuff {
+   publishDir "results/dirdir/", mode: 'copy'
 
-   input:
-   file('out_new/*') from ch_merge.collect()
+   input: path('out_new/*')
 
-   output:
-   file('iputs.txt')
+   output: path('iputs.txt')
 
    script:
    """
@@ -34,4 +28,15 @@ process merge {
    """
 }
 
+workflow {
+
+  Channel.of( 1, 3, 5, 7, 9, 11, 13, 15, 17, 19 ).set { ch_input }
+
+  gen_dirs(ch_input) | merge_stuff
+
+  // gen_dirs(ch_input)
+  // merge_stuff(gen_dirs.out.ch_merge)
+
+
+}
 
